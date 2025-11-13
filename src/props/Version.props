@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <MAJORVER Condition="'$(MAJORVER)' == ''">0</MAJORVER>
+    <MINORVER Condition="'$(MINORVER)' == ''">0</MINORVER>
+    <SPVER Condition="'$(SPVER)' == ''">0</SPVER>
+    <BUILDNUM Condition="'$(BUILDNUM)' == ''">1</BUILDNUM>
+    <COPYRIGHTYEAR Condition="'$(COPYRIGHTYEAR)' == ''">$([System.DateTime]::Now.Year)</COPYRIGHTYEAR>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FILE_VERSION>$(MAJORVER).$(MINORVER).$(SPVER).$(BUILDNUM)</FILE_VERSION>
+    <FILE_VERSION_COMMAS>$(MAJORVER),$(MINORVER),$(SPVER),$(BUILDNUM)</FILE_VERSION_COMMAS>
+    <VersionAssembly>$(FILE_VERSION)</VersionAssembly>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>VER_FILEVERSION_WSTR=L"$(FILE_VERSION)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>VER_LEGALCOPYRIGHT_STR=\"$(COPYRIGHTYEAR)\";VER_FILEVERSION=$(FILE_VERSION_COMMAS);VER_FILEVERSION_STR=\"$(FILE_VERSION)\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+</Project>

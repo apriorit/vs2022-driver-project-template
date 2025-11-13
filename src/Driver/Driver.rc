@@ -1,0 +1,28 @@
+#include <windows.h>
+#include <ntverp.h>
+
+#if defined(_AMD64_)
+#   define VER_OS_PLATFORM  "x64"
+#elif defined(_X86_)
+#   define VER_OS_PLATFORM  "x86"
+#elif defined(_ARM64_)
+#   define VER_OS_PLATFORM  "ARM64"
+#else
+#   define VER_OS_PLATFORM  "Unknown"
+#endif
+
+#define VER_FILETYPE                VFT_DRV
+#define VER_FILESUBTYPE             VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR     "Your driver" " (" VER_OS_PLATFORM ")"
+#undef VER_COMPANYNAME_STR
+#define VER_COMPANYNAME_STR         "Your company"
+#undef VER_PRODUCTNAME_STR
+#define VER_PRODUCTNAME_STR         "Your product"
+
+#undef VER_PRODUCTVERSION
+#define VER_PRODUCTVERSION VER_FILEVERSION
+
+#undef VER_PRODUCTVERSION_STR
+#define VER_PRODUCTVERSION_STR VER_FILEVERSION_STR
+
+#include <common.ver>
